@@ -4,3 +4,10 @@ compile_commands.json
 *.exe
 *.so
 *.o
+
+.cache/*
+.ccls-cache/*
+.vscode/*
+.idea/*
+
+.DS_Store
