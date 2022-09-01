@@ -36,13 +36,13 @@ for model, data in INPUT_PAIR:
         for distTransSize in distTransSize_Values:
             for trimFraction in trimFraction_Values:
                 print(
-                    'pueue add -i -- ${EXEC_PATH} ${DATA_DIR}/'
+                    'pueue add  -- "${EXEC_PATH} ${DATA_DIR}/'
                     + model
                     + ' ${DATA_DIR}/'
                     + data
                     + f' 0 None {MSE_Thresh} -3.1416 -3.1416 -3.1416 6.2832 -0.5 -0.5 -0.5 1.0 {trimFraction/100.0} {distTransSize} 2.0 >'
                     + ' ${LOG_DIR}/'
-                    + f'{id_}.txt'
+                    + f'{id_}.txt"'
                 )
                 id_ += 1
 
