@@ -13,3 +13,5 @@ compile_commands.json
 .DS_Store
 
 TAGS
+build_debug/CMakeFiles
+build_debug

@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <chrono>
 #include <fstream>
 #include <iostream>
-// #include <thread>
+#include <thread>
 // #include <time.h>
 using namespace std;
 
@@ -45,12 +45,12 @@ void parseInput(int argc, char **argv, string &modelFName, string &dataFName,
 // void readConfig(string FName, GoICP &goicp);
 int loadPointCloud(string FName, int &N, POINT3D **p);
 
-/* void supervisor_func(){
+void supervisor_func(){
   using namespace std::chrono_literals;
-  std::this_thread::sleep_for(12*60s);
-  std::cout << "reaching 12*60s...." << std::endl;
+  std::this_thread::sleep_for(1*60s);
+  std::cout << "# reaching 12*60s...." << std::endl;
   std::exit(12);
-} */
+}
 
 int main(int argc, char **argv) {
   std::vector<std::string> timer_names = {"build time", "register time",
@@ -105,7 +105,7 @@ int main(int argc, char **argv) {
   cout << "# Registering..." << endl;
   // cout << modelFName << endl;
   // cout << dataFName << endl;
-  // auto f = std::thread{supervisor_func};
+  auto f = std::thread{supervisor_func};
   // clockBegin = clock();
   startTimer(&timers, 1);
   goicp.Register();
@@ -121,6 +121,8 @@ int main(int argc, char **argv) {
   cout << register_time << endl;
   cout << "# Registration Success!" << endl;
   cout << "1" << endl;
+
+  f.detach();
 
   // ofstream ofile;
   // ofile.open(outputFname.c_str(), ofstream::out);
