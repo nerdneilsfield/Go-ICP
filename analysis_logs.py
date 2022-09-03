@@ -65,15 +65,15 @@ class TestLog:
             self.is_success = True
 
         if self.is_success:
-            self.total_time = log_lines[-1][:-1]
-            self.register_time = log_lines[-5][:-1]
+            self.total_time = log_lines[-1][:-1].replace("\t", "").replace("\n", "").replace(" ", "")
+            self.register_time = log_lines[-5][:-1].replace("\t", "").replace("\n", "").replace(" ", "")
 
-        self.model = log_lines[13].split('/')[-1][:-1]
-        self.data = log_lines[14].split('/')[-1][:-1]
-        self.mse = log_lines[1][:-1]
-        self.trimming = log_lines[10][:-1]
-        self.dist = log_lines[11][:-1]
-        self.build_time = log_lines[22][:-1]
+        self.model = log_lines[13].split('/')[-1][:-1].replace("\t", "").replace("\n", "").replace(" ", "")
+        self.data = log_lines[14].split('/')[-1][:-1].replace("\t", "").replace("\n", "").replace(" ", "")
+        self.mse = log_lines[1][:-1].replace("\t", "").replace("\n", "").replace(" ", "")
+        self.trimming = log_lines[10][:-1].replace("\t", "").replace("\n", "").replace(" ", "")
+        self.dist = log_lines[11][:-1].replace("\t", "").replace("\n", "").replace(" ", "")
+        self.build_time = log_lines[22][:-1].replace("\t", "").replace("\n", "").replace(" ", "")
 
     def parse_log_file(self, file):
         with open(file, 'r') as f:
