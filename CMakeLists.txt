@@ -24,3 +24,13 @@ set_target_properties(GoICP_BF PROPERTIES
   COMPILE_FLAGS "-pthread"
   LINK_FLAGS "-pthread"
   )
+
+
+add_executable(GoICP_BF2
+  jly_brute_force2.cpp
+)
+target_link_libraries(GoICP_BF2 GoICPLib)
+set_target_properties(GoICP_BF2 PROPERTIES
+  COMPILE_FLAGS "-pthread"
+  LINK_FLAGS "-pthread"
+  )
