@@ -39,21 +39,20 @@ if (
     )
     sys.exit(1)
 
+PARTIAL0 = [f'partialright0-{i}' for i in range(10)]
 
-INPUT_PAIR = [
-    (f'right{i}.txt', f'right{j}.txt')
-    for i in range(11)
-    for j in range(11)
-    if j > i
-]
+PARTIAL1 = [f'partialright1-{i}' for i in range(10)]
+
+
+INPUT_PAIR = [(i, j) for i in PARTIAL0 for j in PARTIAL1 if j != i]
 
 BASH_HEADER = f"""
 #!/usr/bin/bash
 
-EXEC_PATH="${os.path.abspath(args.exec_path)}"
-LOG_DIR="${os.path.abspath(args.log_dir)}"
-DATA_DIR="${os.path.abspath(args.data_dir)}"
-RESULT_DIR="${os.path.abspath(args.result_dir)}"
+EXEC_PATH="{os.path.abspath(args.exec_path)}"
+LOG_DIR="{os.path.abspath(args.log_dir)}"
+DATA_DIR="{os.path.abspath(args.data_dir)}"
+RESULT_DIR="{os.path.abspath(args.result_dir)}"
 
 # use half thread not all
 pueue parallel $(($(nproc) / 2))
@@ -81,7 +80,7 @@ for model, data in INPUT_PAIR:
                     + data
                     + ' 0'
                     + ' ${RESULT_DIR}/'
-                    + f'${id_}.txt'
+                    + f'{id_}.txt'
                     + f'{MSE_Thresh} -3.1416 -3.1416 -3.1416 6.2832 -0.5 -0.5'
                     + f' -0.5 1.0 {trimFraction/100.0} {distTransSize} 2.0 >'
                     + ' ${LOG_DIR}/'
