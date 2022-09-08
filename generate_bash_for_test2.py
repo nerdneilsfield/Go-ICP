@@ -39,9 +39,9 @@ if (
     )
     sys.exit(1)
 
-PARTIAL0 = [f'partialright0-{i}' for i in range(10)]
+PARTIAL0 = [f'partialright0-{i}.txt' for i in range(10)]
 
-PARTIAL1 = [f'partialright1-{i}' for i in range(10)]
+PARTIAL1 = [f'partialright1-{i}.txt' for i in range(10)]
 
 
 INPUT_PAIR = [(i, j) for i in PARTIAL0 for j in PARTIAL1 if j != i]
@@ -81,7 +81,7 @@ for model, data in INPUT_PAIR:
                     + ' 0'
                     + ' ${RESULT_DIR}/'
                     + f'{id_}.txt'
-                    + f'{MSE_Thresh} -3.1416 -3.1416 -3.1416 6.2832 -0.5 -0.5'
+                    + f' {MSE_Thresh} -3.1416 -3.1416 -3.1416 6.2832 -0.5 -0.5'
                     + f' -0.5 1.0 {trimFraction/100.0} {distTransSize} 2.0 >'
                     + ' ${LOG_DIR}/'
                     + f'{id_}.txt"'
