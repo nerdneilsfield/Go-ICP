@@ -15,3 +15,5 @@ compile_commands.json
 TAGS
 build_debug/CMakeFiles
 build_debug
+GRTAGS
+tags
