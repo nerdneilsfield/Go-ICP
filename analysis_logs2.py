@@ -27,6 +27,8 @@ def remove_lineheadandtail_space(text):
         text = text[1:]
     while text[-1] == '\t':
         text = text[:-1]
+    while text[-1] == '\n':
+        text = text[:-1]
     while text[-1] == ' ':
         text = text[:-1]
     return text
@@ -41,13 +43,16 @@ class Result:
 
         with open(file, 'r') as f:
             lines = f.readlines()
+            logging.debug(f"Reading {len(lines)} lines")
             if len(lines) >= 9:
                 self.R.extend(remove_lineheadandtail_space(lines[-6]).split())
                 self.R.extend(remove_lineheadandtail_space(lines[-5]).split())
                 self.R.extend(remove_lineheadandtail_space(lines[-4]).split())
-                self.T[0] = remove_lineheadandtail_space(lines[-3])
-                self.T[1] = remove_lineheadandtail_space(lines[-2])
-                self.T[2] = remove_lineheadandtail_space(lines[-1])
+                logging.debug(lines[-3])
+                logging.debug(lines[-2])
+                self.T.append(remove_lineheadandtail_space(lines[-3]))
+                self.T.append(remove_lineheadandtail_space(lines[-2]))
+                self.T.append(remove_lineheadandtail_space(lines[-1]))
             else:
                 print('wrong line of result')
 
@@ -84,7 +89,7 @@ class TestLog:
     def __str__(self):
         T_str = '\t'.join(self.T)
         R_str = '\t'.join(self.R)
-        return f'{self.index}\t{1 if self.is_success else 0}\t{self.model}\t{self.data}\t{self.mse}\t{self.dist}\t{self.trimming}\t{self.build_time}\t{self.register_time}\t{self.total_time}{T_str}\t{R_str}'
+        return f'{self.index}\t{1 if self.is_success else 0}\t{self.model}\t{self.data}\t{self.mse}\t{self.dist}\t{self.trimming}\t{self.build_time}\t{self.register_time}\t{self.total_time}\t{T_str}\t{R_str}'
 
     def print(self):
         print('index: {}'.format(self.index))
