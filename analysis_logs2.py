@@ -78,8 +78,8 @@ class TestLog:
 
         # for result file
         self.index = 0
-        self.T = []
-        self.R = []
+        self.T = ['0', '0', '0']
+        self.R = ['0', '0', '0', '0', '0', '0', '0', '0', '0']
 
     def __str__(self):
         T_str = '\t'.join(self.T)
