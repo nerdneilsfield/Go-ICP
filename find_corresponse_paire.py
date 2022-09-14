@@ -43,10 +43,10 @@ for i, (model, data) in enumerate(PAIRMETER):
     df4 = df3.filter(pl.col("trimming") == 0.4)
     print(df4)
     df4.write_csv(f"build/test_{i}+.csv", sep="\t")
-    if i == 0:
-        df_list.append(df3)
-    else:
-        df_list.append(df3[1:])
+    # if i == 0:
+    #     df_list.append(df3)
+    # else:
+    #     df_list.append(df3[1:])
 
 for sdf in df_list:
     print(len(sdf))
