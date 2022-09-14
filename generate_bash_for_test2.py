@@ -39,13 +39,15 @@ if (
     )
     sys.exit(1)
 
-PARTIAL0 = [f'partialright0-{i}.txt' for i in range(10)]
-
-PARTIAL1 = [f'partialright1-{i}.txt' for i in range(10)]
-
-
-INPUT_PAIR = [(i, j) for i in PARTIAL0 for j in PARTIAL1 if j != i]
-
+# PARTIAL0 = [f'partialright0-{i}.txt' for i in range(10)]
+#
+# PARTIAL1 = [f'partialright1-{i}.txt' for i in range(10)]
+#
+#
+# INPUT_PAIR = [(i, j) for i in PARTIAL0 for j in PARTIAL1 if j != i]
+INPUT_PAIR = [
+    (f'partialright0-{i}.txt', f'partialright1-{i}.txt') for i in range(10)
+]
 BASH_HEADER = f"""
 #!/usr/bin/bash
 
@@ -61,13 +63,13 @@ pueue parallel $(($(nproc) / 2))
 
 MSE_Thresh_Values = [0.001, 0.0001, 0.00001]
 distTransSize_Values = range(0, 600, 50)
-trimFraction_Values = range(0, 100, 20)
+trimFraction_Values = range(0, 100, 10)
 
 # print(len(INPUT_PAIR))
 
 print(BASH_HEADER)
 
-id_ = 0
+id_ = 1
 for model, data in INPUT_PAIR:
     # print(model, data)
     for MSE_Thresh in MSE_Thresh_Values:
