@@ -18,3 +18,9 @@ build_debug
 GRTAGS
 tags
 go_icp.csv
+
+env/*
+venv/*
+
+
+1
